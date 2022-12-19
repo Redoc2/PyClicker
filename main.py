@@ -24,24 +24,24 @@ def decrypt(value):
     list = [item for item in value]
     for item in list:
         val = 0
-        if f'{enc[val]}' == f'{item}':
-            ret += f'{enc[val]}'
-            val = 0
-        val += 1
+        while enc[val] != item:
+            val +=1
+        ret += str(val)
+        val = 0
     return ret
     
 try:
     l = open('database.txt', 'r')
-    bal = int(l.read())
+    bal = int(decrypt(l.read()))
     l.close()
 except:
     bal = 0
     with open('database.txt', 'a') as f:
-        print(bal, file=f)
+        print(encrypt(bal), file=f)
 # create database.txt when not avaliable
 while True:
     remove()
-    write('database.txt', 'a', 'f', bal)
+    write('database.txt', 'a', 'f', encrypt(bal))
     print(bal)
     inp = input()
     if inp == '':
@@ -54,8 +54,4 @@ while True:
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()
-    elif inp == "test":
-        print(encrypt(bal))
-        print(decrypt(encrypt(bal)))
-        input()
     os.system('cls')

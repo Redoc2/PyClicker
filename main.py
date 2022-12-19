@@ -7,8 +7,10 @@ def remove():
     except:
         return 'Failed'
 def write(name, x, x2, val):
+    remove()
     with open(name, x) as x2:
         print(val, file=x2)
+    x2.close()
 
 def encrypt(value):
     enc = ['b','d','K','O','Z','p','j','u','T','a']
@@ -36,8 +38,9 @@ try:
     l.close()
 except:
     bal = 0
+    remove()
     with open('database.txt', 'a') as f:
-        print(encrypt(bal), file=f)
+        print('b', file=f)
 # create database.txt when not avaliable
 while True:
     print(remove())
@@ -50,10 +53,8 @@ while True:
         inpr = input('Are you sure you want to reset? [y/n]: ')
         if inpr == 'y':
             remove()
-            write('database.txt', 'a', 'f', 0)
+            write('database.txt', 'a', 'f', 'b')
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()
-    elif inp == 'test':
-        os.remove(os.getcwd() + "/database.txt")
     os.system('cls')

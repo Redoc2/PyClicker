@@ -18,4 +18,3 @@ while True:
     if inp == '':
         bal += 1
     os.system('cls')
-    print(bal)

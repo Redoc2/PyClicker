@@ -9,6 +9,27 @@ def remove():
 def write(name, x, x2, val):
     with open(name, x) as x2:
         print(val, file=x2)
+
+def encrypt(value):
+    enc = ['b','d','K','O','Z','p','j','u','T','a']
+    ret = ''
+    list = [item for item in str(value)]
+    for lett in list:
+        ret += f'{enc[int(lett)]}'
+    return ret
+
+def decrypt(value):
+    enc = ['b','d','K','O','Z','p','j','u','T','a']
+    ret = ''
+    list = [item for item in value]
+    for item in list:
+        val = 0
+        if f'{enc[val]}' == f'{item}':
+            ret += f'{enc[val]}'
+            val = 0
+        val += 1
+    return ret
+    
 try:
     l = open('database.txt', 'r')
     bal = int(l.read())
@@ -33,4 +54,8 @@ while True:
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()
+    elif inp == "test":
+        print(encrypt(bal))
+        print(decrypt(encrypt(bal)))
+        input()
     os.system('cls')

@@ -40,7 +40,7 @@ except:
         print(encrypt(bal), file=f)
 # create database.txt when not avaliable
 while True:
-    remove()
+    print(remove())
     write('database.txt', 'a', 'f', encrypt(bal))
     print(bal)
     inp = input()
@@ -54,4 +54,6 @@ while True:
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()
+    elif inp == 'test':
+        os.remove(os.getcwd() + "/database.txt")
     os.system('cls')

@@ -1,16 +1,10 @@
 import os
 import time
-def remove():
-    try:
-        os.remove(os.getcwd() + "/database.txt")
-        return 'Success'
-    except:
-        return 'Failed'
-def write(name, x, x2, val):
-    remove()
-    with open(name, x) as x2:
-        print(val, file=x2)
-    x2.close()
+def write(name, x, val):
+    os.remove(os.getcwd() + "/database.txt")
+    test = open(name, x)
+    print(val, file=test)
+    test.close()
 
 def encrypt(value):
     enc = ['b','d','K','O','Z','p','j','u','T','a']
@@ -38,14 +32,10 @@ try:
     l.close()
 except:
     bal = 0
-    remove()
-    writing = write('database.txt', 'a', 'f', encrypt(bal))
-    writing.close()
+    write('database.txt', 'a', encrypt(bal))
 # create database.txt when not avaliable
 while True:
-    print(remove())
-    chng = write('database.txt', 'a', 'f', encrypt(bal))
-    chng.close()
+    write('database.txt', 'a', encrypt(bal))
     print(bal)
     inp = input()
     if inp == '':
@@ -53,7 +43,6 @@ while True:
     elif inp == 'reset':
         inpr = input('Are you sure you want to reset? [y/n]: ')
         if inpr == 'y':
-            remove()
             write('database.txt', 'a', 'f', 'b')
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')

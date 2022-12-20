@@ -39,12 +39,13 @@ try:
 except:
     bal = 0
     remove()
-    with open('database.txt', 'a') as f:
-        print('b', file=f)
+    writing = write('database.txt', 'a', 'f', encrypt(bal))
+    writing.close()
 # create database.txt when not avaliable
 while True:
     print(remove())
-    write('database.txt', 'a', 'f', encrypt(bal))
+    chng = write('database.txt', 'a', 'f', encrypt(bal))
+    chng.close()
     print(bal)
     inp = input()
     if inp == '':

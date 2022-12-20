@@ -46,7 +46,7 @@ while True:
     elif inp == 'reset':
         inpr = input('Are you sure you want to reset? [y/n]: ')
         if inpr == 'y':
-            write('database.txt', 'a', 'f', 'b')
+            write('database.txt', 'a', 'b')
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()

@@ -1,5 +1,8 @@
 import os
 import time
+
+clear = 'cls'
+
 def write(name, x, val):
     os.remove(os.getcwd() + "/database.txt")
     test = open(name, x)
@@ -47,4 +50,4 @@ while True:
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()
-    os.system('cls')
+    os.system(clear)

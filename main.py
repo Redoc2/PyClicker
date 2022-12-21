@@ -1,13 +1,16 @@
 import os
+import pickle
 import time
 
 clear = 'cls'
 
-def write(name, x, val):
-    os.remove(os.getcwd() + "/database.txt")
-    test = open(name, x)
-    print(val, file=test)
-    test.close()
+def writePickle(filename, data):
+     with open(filename, 'wb') as f:
+         pickle.dump(data, f)
+
+def readPickle(filename): 
+    with open(filename, 'rb') as f:
+            return pickle.load(f)
 
 def encrypt(value):
     enc = ['b','d','K','O','Z','p','j','u','T','a']
@@ -30,15 +33,13 @@ def decrypt(value):
     return ret
     
 try:
-    l = open('database.txt', 'r')
-    bal = int(decrypt(l.read()))
-    l.close()
+    bal = int(decrypt(readPickle('database.txt')))
 except:
     bal = 0
-    write('database.txt', 'a', encrypt(bal))
+    writePickle('database.txt', encrypt(bal))
 # create database.txt when not avaliable
 while True:
-    write('database.txt', 'a', encrypt(bal))
+    writePickle('database.txt', encrypt(bal))
     print(bal)
     inp = input()
     if inp == '':
@@ -46,7 +47,7 @@ while True:
     elif inp == 'reset':
         inpr = input('Are you sure you want to reset? [y/n]: ')
         if inpr == 'y':
-            write('database.txt', 'a', 'b')
+            writePickle('database.txt', 'b')
             bal = 0
             print('Succesfully resetted stats!\nPress enter to continue')
             input()
